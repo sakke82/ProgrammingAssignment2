@@ -1,0 +1,16 @@
+{
+    "contents" : "## gets a matrix as an argument,and returns a list of a functions for this matrix\n## function set stores matrix in this environment, function get returns the matrix\n## set_inverse stores the inverse matrix, and get_inverse returns the inverse\n## matrix\n\nmakeCacheMatrix <- function(x = matrix()) {\n    inverse <- NULL\n    \n    set <- function(y) {\n        x <<- y\n        inverse <<- NULL\n    }\n    \n    get <- function() x\n    \n    set_inverse <- function(inv) {\n        inverse <<- inv\n    }\n    \n    get_inverse <- function() inverse\n    \n    list(set = set, \n         get = get, \n         set_inverse = set_inverse,\n         get_inverse = get_inverse)  \n}\n\n\n## Gets a list set by function makeCacheMatrix, and checks if the inverse is \n## calculated before, and if it has been, returns the inverse matrix from cache.\n## If the inverse matrix doesn't found it calculate it and store in the cache.\n\ncacheSolve <- function(x, ...) {\n    \n    inverse <- x$get_inverse()\n    \n    if(!is.null(inverse)) {\n        message(\"getting cached data\")\n        return(inverse)\n    }\n    \n    data <- x$get()\n    inverse <- solve(data, ...)\n    x$set_inverse(inverse)\n    inverse\n}\n",
+    "created" : 1418236757589.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1287197618",
+    "id" : "B4FC543D",
+    "lastKnownWriteTime" : 1418239216,
+    "path" : "C:/Users/aino/Desktop/coursera/git/ProgrammingAssignment2/ProgrammingAssignment2/cachematrix.R",
+    "project_path" : "cachematrix.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
